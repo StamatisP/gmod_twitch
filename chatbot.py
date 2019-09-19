@@ -5,6 +5,7 @@ import websockets
 import time
 import os
 import sys
+import configparser
 
 global inc_msg
 inc_msg = "null"
@@ -19,7 +20,10 @@ global anarchy_mode
 anarchy_mode = False
 global obs_created
 obs_created = False
-TwitchChannel = 'mineturtlepls'
+with open("config.ini") as f:
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    TwitchChannel = config['tgm']['twitchchannel']
 
 clear = lambda: os.system('cls')
 clear()
