@@ -94,6 +94,8 @@ async def main_program(websocket, path):
             else:
                 if anarchy_mode: await websocket.send(inc_msg)
             inc_msg = "null"
+        elif message == "VoteTime":
+            voting_time = True
         elif message == "VoteOver":
             voting_time = False
         elif message == "anarchymode":
