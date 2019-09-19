@@ -35,7 +35,7 @@ def do_command(cmd, user):
         inc_msg = "VoteInfo"
         return
     if cmd == "votetime":
-        if user == "mineturtlepls":
+        if user == TwitchChannel:
             inc_msg = cmd
     else:
         inc_msg = cmd
