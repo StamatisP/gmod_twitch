@@ -5,7 +5,6 @@ import websockets
 import time
 import os
 import sys
-import threading
 import psutil
 import logging
 

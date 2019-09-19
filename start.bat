@@ -1,2 +1,2 @@
-cmd /k "cd /d C:\Users\Stamos\PycharmProjects\gmod_twitch\venv\Scripts & activate & cd /d    C:\Users\Stamos\PycharmProjects\gmod_twitch & python chatbot.py"
+cmd /k "cd /d %CD%\venv\Scripts & activate & cd /d %CD% & python chatbot.py"
 pause
