@@ -5,6 +5,8 @@ Releases are in https://github.com/StamatisP/gmod_twitch/releases
 
 It isn't specific to Twitch, nor Gmod.
 
-This requires an addon on Garry's Mod to use properly.
+This was made for my addon, https://steamcommunity.com/sharedfiles/filedetails/?id=1872662089
 
-All dependencies are listed in the chatbot.py file, pip install them.
+
+Developers:
+  All dependencies are listed in the chatbot.py file, pip install them if you intend to work on this.
