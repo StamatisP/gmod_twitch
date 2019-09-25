@@ -35,7 +35,7 @@ except FileNotFoundError:
     print("File does not exist, user input time.")
     config = configparser.ConfigParser()
     config.read("config.ini")
-    TwitchChannel = input("Enter the name of your Twitch channel, in lowercase: ")
+    TwitchChannel = input("Enter the name of your Twitch channel (where you will stream), in lowercase: ")
     TwitchChannel.lower()
     BotName = input("Now enter the name of your bot account, in lowercase: ")
     BotName.lower()
