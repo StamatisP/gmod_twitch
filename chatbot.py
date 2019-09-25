@@ -28,6 +28,8 @@ try:
         config = configparser.ConfigParser()
         config.read('config.ini')
         TwitchChannel = config['tgm']['twitchchannel']
+        BotName = config['tgm']['botname']
+        BotOauth = config['tgm']['botoauth']
         f.close()
 except FileNotFoundError:
     print("File does not exist, user input time.")
@@ -35,8 +37,14 @@ except FileNotFoundError:
     config.read("config.ini")
     TwitchChannel = input("Enter the name of your Twitch channel, in lowercase: ")
     TwitchChannel.lower()
+    BotName = input("Now enter the name of your bot account, in lowercase: ")
+    BotName.lower()
+    BotOauth = input("Now copy-paste the bot's oauth token (http://twitchapps.com/tmi/): ")
+    BotOauth.lower()
     config.add_section('tgm')
     config.set('tgm', 'twitchchannel', TwitchChannel)
+    config.set('tgm', 'botname', BotName)
+    config.set('tgm', 'botoauth', BotOauth)
     with open('config.ini', 'w') as configfile:
         config.write(configfile)
 
@@ -86,7 +94,7 @@ async def main_program(websocket, path):
     global obs_created
     if not obs_created:
         print(Fore.CYAN + "creating observer")
-        obs = Observer('gameruiner9000', 'oauth:mi1cverwqta0oj67pg2jsr2u04oprt')
+        obs = Observer(BotName, BotOauth)
         obs.start()
         obs.join_channel(TwitchChannel)
         obs.send_message('hello!', TwitchChannel)
