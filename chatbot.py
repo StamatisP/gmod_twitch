@@ -103,7 +103,7 @@ async def main_program(websocket, path):
         obs_created = True
     async for message in websocket:
         if message != "ConnTest": print(Fore.YELLOW + message + " " + time.strftime("%H:%M:%S", time.gmtime()))
-        if inc_msg != "null": print(Fore.YELLOW + inc_msg)
+        if inc_msg != "null": print(Fore.MAGENTA + inc_msg)
         if message == "Connected Message!":
             await websocket.send("Serv connect!")
             print(Fore.YELLOW + "connected!")
