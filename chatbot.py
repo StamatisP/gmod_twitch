@@ -79,7 +79,7 @@ def handle_event(event):
         cmd = event.message.split(' ')[0][1:].lower()
         print(Fore.CYAN + "received command " + cmd)
         if voting_time:
-            votes.append(ChatMessage(event.nickname, event.message))
+            votes.append(ChatMessage(event.nickname, event.message.lower()))
         do_command(cmd, event.nickname)
     else:
         global inc_msg
@@ -92,6 +92,7 @@ async def main_program(websocket, path):
     global voting_time
     global anarchy_mode
     global obs_created
+    print(Fore.CYAN + "Websocket started on %s"  % (websocket.local_address,))
     if not obs_created:
         print(Fore.CYAN + "creating observer")
         obs = Observer(BotName, BotOauth)
@@ -110,6 +111,7 @@ async def main_program(websocket, path):
         elif message == "ConnTest":
             if inc_msg == "votetime":
                 print(Fore.YELLOW + "time to vote!")
+                obs.send_message('Voting time: start!', TwitchChannel)
                 voting_time = True
                 await websocket.send(inc_msg)
             elif inc_msg == "VoteInfo":
@@ -128,6 +130,12 @@ async def main_program(websocket, path):
             inc_msg = "null"
         elif message == "VoteTime":
             voting_time = True
+            obs.send_message('Voting time!', TwitchChannel)
+        elif message.startswith("VoteActions"):
+            actions = message.split(';')
+            for i in range(0, len(actions)):
+                if i == 0: continue
+                obs.send_message(actions[i], TwitchChannel)
         elif message == "VoteOver":
             voting_time = False
         elif message == "anarchymode":
@@ -148,7 +156,7 @@ async def main_program(websocket, path):
             #os.execv(__file__, *sys.argv)
 
 
-start_server = websockets.serve(main_program, "localhost", 8765)
+start_server = websockets.serve(main_program, host='0.0.0.0', port=8765)
 '''serv_t = threading.Thread(target=start_server)
 serv_t.daemon = True
 serv_t.start()'''
