@@ -130,7 +130,6 @@ async def main_program(websocket, path):
             inc_msg = "null"
         elif message == "VoteTime":
             voting_time = True
-            obs.send_message('Voting time!', TwitchChannel)
         elif message.startswith("VoteActions"):
             actions = message.split(';')
             for i in range(0, len(actions)):
