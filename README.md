@@ -1,4 +1,4 @@
-# gmod_twitch
+# gmod_twitch [ NOT UPDATED ANYMORE, NEW VERSIOM HERE https://github.com/StamatisP/tgm_chatbot]
 Script that pipes commands from a Twitch chat into a websocket.
 
 Releases are in https://github.com/StamatisP/gmod_twitch/releases
